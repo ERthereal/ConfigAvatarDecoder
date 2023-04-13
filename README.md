@@ -1,7 +1,7 @@
 # ConfigAvatarDecoder
 
-Tool to generate the minimum ConfigAvatar data required to run GC
-Automatically recognizes character names
+Tool to generate the minimum ConfigAvatar data required to run GC  
+Automatic recognition of character names eliminates the need for bin file mapping
 
 ## Usage
 
