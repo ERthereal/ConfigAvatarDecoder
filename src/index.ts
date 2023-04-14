@@ -1,7 +1,7 @@
 import { exec } from "child_process"
 import { readFileSync, readdirSync } from "fs"
 import { platform } from "os"
-import { cwd } from "process"
+import { cwd, exit } from "process"
 
 import { deleteFile, dirExists, fileExists, mkdir, writeFile } from "./utils/fileSystem"
 
@@ -30,6 +30,7 @@ const blkParse = true //Please set configAvatar to false when using it.
   if (blkParse) {
     if (platform() == "darwin") await execCommand("./tool/blkstuff -d blk/24230448.blk -o bin")
     else if (platform() == "win32") await execCommand("./tool/blkstuff.exe -d blk/24230448.blk -o bin")
+    else exit()
   }
   const binFiles = readdirSync("./bin")
 
