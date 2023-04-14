@@ -28,7 +28,7 @@ const blkParse = true //Please set configAvatar to false when using it.
   if (!(await dirExists("json"))) mkdir("json")
 
   if (blkParse) {
-    if (platform() == "darwin") await execCommand("./tool/blkDecrypter -d blk/24230448.blk -o bin")
+    if (platform() == "darwin") await execCommand("./tool/blkstuff -d blk/24230448.blk -o bin")
     else if (platform() == "win32") await execCommand("./tool/blkstuff.exe -d blk/24230448.blk -o bin")
   }
   const binFiles = readdirSync("./bin")
