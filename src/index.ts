@@ -1,7 +1,9 @@
-import { readFileSync, readdirSync } from "fs"
-import { deleteFile, dirExists, fileExists, mkdir, writeFile } from "./utils/fileSystem"
 import { exec } from "child_process"
+import { readFileSync, readdirSync } from "fs"
+import { platform } from "os"
 import { cwd } from "process"
+
+import { deleteFile, dirExists, fileExists, mkdir, writeFile } from "./utils/fileSystem"
 
 let abilitiesData = {
   abilities: [],
@@ -25,7 +27,10 @@ const blkParse = true //Please set configAvatar to false when using it.
 ;(async () => {
   if (!(await dirExists("json"))) mkdir("json")
 
-  if (blkParse) await execCommand("./blkDecrypter -d blk/24230448.blk -o bin")
+  if (blkParse) {
+    if (platform() == "darwin") await execCommand("./tool/blkDecrypter -d blk/24230448.blk -o bin")
+    else if (platform() == "win32") await execCommand("./tool/blkstuff.exe -d blk/24230448.blk -o bin")
+  }
   const binFiles = readdirSync("./bin")
 
   for (const binFile of binFiles) {
